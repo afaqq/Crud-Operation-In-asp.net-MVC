@@ -1,5 +1,4 @@
 # Crud-Operation-In-asp.net-MVC
-# CRUD Operations Web Application
 
 This web application implements CRUD (Create, Read, Update, Delete) operations for managing academic records of students. It leverages server-side validation to ensure data integrity and uses server-side datatables for efficient data presentation. Form submissions are handled through AJAX, providing a seamless user experience.
 
@@ -28,7 +27,7 @@ To run this project locally, follow the installation instructions in the README 
 Contributions are welcome! Feel free to open issues and submit pull requests.
 
 ## License
-This project is licensed under the [Your License Name] License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under Afaq Ahmad License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements
 - [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet)
