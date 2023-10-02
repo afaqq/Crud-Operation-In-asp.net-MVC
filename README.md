@@ -27,7 +27,7 @@ To run this project locally, follow the installation instructions in the README 
 Contributions are welcome! Feel free to open issues and submit pull requests.
 
 ## License
-This project is licensed under Afaq Ahmad License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under [Afaq Ahmad](http://afaqahmadweb.000webhostapp.com/) License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements
 - [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet)
