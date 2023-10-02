@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatable@1.0.5",
+      "destination": "wwwroot/datatable/"
+    },
+    {
+      "library": "datatable@2.0.1",
+      "destination": "wwwroot/datatable/"
+    },
+    {
+      "library": "datatable@1.0.6",
+      "destination": "wwwroot/datatable/"
+    },
+    {
+      "library": "datatable@1.0.2",
+      "destination": "wwwroot/datatable/"
+    },
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/datatables/"
+    },
+    {
+      "library": "datatables@1.10.19",
+      "destination": "wwwroot/lib/datatables/"
+    }
+  ]
+}

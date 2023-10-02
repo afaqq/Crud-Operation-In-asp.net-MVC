@@ -1,0 +1,64 @@
+﻿@model Academic
+
+@{
+    ViewData["Title"] = "Edit Academic Record";
+}
+
+<h2>Edit Academic Record</h2>
+<div class="container-fluid w-50 border-2 text-center">
+    <h2>Edit Academic Record</h2>
+    <form asp-controller="Student" asp-action="EditAcademicRecord" method="post">
+        @Html.AntiForgeryToken() <!-- Include anti-forgery token -->
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="StudentId" />
+
+        <div class="form-group">
+            <label asp-for="Level" class="w-100">
+                Academic Level
+                <select id="Level" name="Level" class="form-control">
+                    <option value="">Select Academic Record</option>
+                    <option value="metric">Metric</option>
+                    <option value="O-Level">O-Level</option>
+                    <option value="Inter">Inter</option>
+                    <option value="Bachelor">Bachelor</option>
+                </select>
+            </label>
+            <span asp-validation-for="Level" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UniName">School/College Name:</label>
+            <input asp-for="UniName" class="form-control" />
+            <span asp-validation-for="UniName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ObtainedMarks">Obtained Marks:</label>
+            <input asp-for="ObtainedMarks" class="form-control" />
+            <span asp-validation-for="ObtainedMarks" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CGPA">Obtained Marks Percentage:</label>
+            <input asp-for="CGPA" class="form-control" />
+            <span asp-validation-for="CGPA" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TotalMarks">Total Marks:</label>
+            <input asp-for="TotalMarks" class="form-control" />
+            <span asp-validation-for="TotalMarks" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PassingYear">Passing Year:</label>
+            <input asp-for="PassingYear" class="form-control" />
+            <span asp-validation-for="PassingYear" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary float-right">Save</button>
+    </form>
+
+    <a asp-controller="Student" asp-action="Manage" asp-route-id="@Model.StudentId" class="btn btn-secondary float-left m-6">Back to Student Details</a>
+</div>

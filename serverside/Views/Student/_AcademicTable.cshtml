@@ -1,0 +1,66 @@
+﻿@model List<Academic>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var r in Model)
+    {
+        if (r != null)
+        {
+            <tr class="text-center">
+                <td>@r.Level </td>
+                <td>@r.UniName</td>
+                <td>@r.ObtainedMarks </td>
+                <td>@r.CGPA</td>
+                <td>@r.TotalMarks</td>
+                <td>@r.PassingYear</td>
+                <td>
+                    <a class="btn btn-sm btn btn-warning" asp-controller="Student" asp-action="EditAcademicRecord" asp-route-id="@r.Id">Edit</a>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger"
+                            onclick="deleteAcademicRecord(@r.Id)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    }
+}
+else
+{
+    <tr>
+        <td colspan="2">No academic information available for this student.</td>
+    </tr>
+}
+
+@section Scripts {
+
+<script src="~/datatables/js/jquery.dataTables.js"></script>
+<script>
+        $(document).ready(function () {
+            $("#Table").dataTable({
+
+                "processing": true,
+                "ServerSide": true,
+                "filter": true,
+                "orderMulti": true,
+                "ajaz": {
+                    "url": "Student/Getdata",
+                    "type": "POST",
+                    "datatype": "json",
+                },
+                "columns": [
+                    { "data": "Level", "autoWidth": true },
+                    { "data": "UniName", "autoWidth": true },
+                    { "data": "ObtainedMarks", "autoWidth": true },
+                    { "data": "CGPA", "autoWidth": true },
+                    { "data": "TotalMarks", "autoWidth": true },
+                    { "data": "PassingYear", "autoWidth": true },
+                    { "data": "Edit", "autoWidth": true },
+                    { "data": "Delete", "autoWidth": true },
+
+                ]
+            })
+        });
+</script>
+}

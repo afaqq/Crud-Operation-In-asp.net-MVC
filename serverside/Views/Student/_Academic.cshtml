@@ -1,0 +1,31 @@
+﻿@model IEnumerable<serverside.Models.Academic>
+
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var r in Model)
+    {
+        if (r != null)
+        {
+            <tr class="text-center">
+                <td>@r.Level </td>
+                <td>@r.UniName</td>
+                <td>@r.ObtainedMarks </td>
+                <td>@r.CGPA</td>
+                <td>@r.TotalMarks</td>
+                <td>@r.PassingYear</td>
+                <td>
+                    <a class="btn btn-sm btn btn-warning" asp-controller="Student" asp-action="EditAcademicRecord" asp-route-id="@r.Id">Edit</a>
+                </td>
+                <td>
+                    <a class="btn btn-sm btn btn-danger" asp-controller="Student" asp-action="DeleteAcademicRecord" asp-route-id="@r.Id" asp-route-studentId="@r.StudentId">Delete</a>
+                </td>
+            </tr>
+        }
+    }
+}
+else
+{
+    <tr>
+        <td colspan="2">No academic information available for this student.</td>
+    </tr>
+}

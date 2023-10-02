@@ -1,0 +1,103 @@
+﻿@model IEnumerable<serverside.Models.Student>
+@{
+    ViewData["Title"] = "Student Data";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-14 offset-2">
+            <h1 class="text-center text-primary">
+                Student Data
+            </h1>
+            <a class="btn btn-sm btn-success m-2" asp-controller="Student" asp-action="Create">Add Student</a>
+            <p class="text-center text-success">@TempData["message"]</p>
+            <table id="myTable" class="table table-bordered">
+                <thead>
+                    <tr class="teble-center">
+                        <th>
+                            Student Id
+                        </th>
+                        <th>
+                            User Name
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            City
+                        </th>
+                        <th>
+                            State
+                        </th>
+                        <th>
+                            Salary
+                        </th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>Academics</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var d in Model)
+                    {
+                        <tr class="text-center">
+                            <td> @d.Id </td>
+                            <td>
+                                @d.UserName
+                            </td>
+                            <td>
+                                @d.Name
+                            </td>
+                            <td>@d.City</td>
+                            <td>@d.State</td>
+                            <td>@d.Salary</td>
+                            <td>
+                                <a class="btn btn-sm btn btn-warning" asp-controller="Student" asp-action="Edit" asp-route-id="@d.Id">Edit</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn btn-danger" asp-controller="Student" asp-action="Delete" asp-route-id="@d.Id">Delete</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn btn-info" asp-controller="Student" asp-action="Manage" asp-route-id="@d.Id">Academic Record</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link href="~/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+    <script src="~/datatables/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myTable").dataTable({
+
+                "processing": true,
+                "ServerSide": true,
+                "filter": true,
+                "orderMulti": true,
+                "ajaz": {
+                    "url": "Student/Getdata",
+                    "type": "POST",
+                    "datatype": "json",
+                },
+                "columns": [
+                    { "data": "Id", "autoWidth": true },
+                    { "data": "UserName", "autoWidth": true },
+                    { "data": "Name", "autoWidth": true },
+                    { "data": "City", "autoWidth": true },
+                    { "data": "State", "autoWidth": true },
+                    { "data": "Salary", "autoWidth": true },
+                    { "data": "Edit", "autoWidth": true },
+                    { "data": "Delete", "autoWidth": true },
+                    { "data": "Manage", "autoWidth": true },
+
+                ]
+            })
+        });
+    </script>
+}

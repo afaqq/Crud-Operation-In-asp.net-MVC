@@ -1,0 +1,73 @@
+﻿@model Academic
+
+@{
+    ViewData["Title"] = "Add Academic Record";
+    Layout=null;
+}
+
+
+<div class="container-fluid w-50 border-2 text-left">
+    <h2>Add Academic Record</h2>
+    <form id="academicRecordForm" asp-page-handler="UpdateTable"
+              data-ajax="true"
+              data-ajax-method="post"
+              data-ajax-update="#Tables"
+              data-ajax-mode="after"
+              data-ajaz-url="Manage">
+        @Html.AntiForgeryToken() 
+
+        <input type="hidden" asp-for="StudentId" />
+
+        <div class="form-group">
+            <label asp-for="Level" class="w-100">
+                Academic Level
+                <select id="Level" name="Level" class="form-control">
+                    <option value="">Select Academic Record</option>
+                    <option value="metric">Metric</option>
+                    <option value="O-Level">O-Level</option>
+                    <option value="Inter">Inter</option>
+                    <option value="Bachelor">Bachelor</option>
+                </select>
+            </label>
+            <span asp-validation-for="Level" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UniName">School/College Name:</label>
+            <input asp-for="UniName" class="form-control" placeholder="Enter School/College Name" />
+            <span asp-validation-for="UniName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ObtainedMarks">Obtained Marks:</label>
+            <input asp-for="ObtainedMarks" class="form-control" placeholder="Enter Obtained Marks" />
+            <span asp-validation-for="ObtainedMarks" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CGPA">Obtained Marks Percentage:</label>
+            <input asp-for="CGPA" class="form-control" placeholder="Enter Obtained Marks Percentage" />
+            <span asp-validation-for="CGPA" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TotalMarks">Total Marks:</label>
+            <input asp-for="TotalMarks" class="form-control" placeholder="Enter Total Marks" />
+            <span asp-validation-for="TotalMarks" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PassingYear">Passing Year:</label>
+            <input asp-for="PassingYear" class="form-control" placeholder="Enter Passing Year" />
+            <span asp-validation-for="PassingYear" class="text-danger"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+
+
+
+    <a asp-controller="Student" asp-action="Manage" asp-route-id="@Model.StudentId" class="btn btn-secondary float-left m-6">Back to Student Details</a>
+</div>
+

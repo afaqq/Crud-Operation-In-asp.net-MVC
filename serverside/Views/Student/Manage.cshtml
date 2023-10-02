@@ -1,0 +1,113 @@
+﻿@model serverside.Models.Student
+
+@{
+    ViewData["Title"] = "Student Academic Record";
+}
+
+<link href="~/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+
+<div class="container-fluid ">
+    <h1>Student Data</h1>
+    <h2><strong>Name:</strong> @Model.Name</h2>
+
+    <h2 class="text-primary">Academic Record</h2>
+   <a class="btn btn-sm btn-success m-2 float-right" href="javascript:void(0);" 
+   data-student-id="@Model.Id" 
+   onclick="openPopup(this, '/Student/AddAcademicRecord?studentId=@Model.Id', 'Add Academic Record');">
+   Add Academic Record
+</a>
+
+
+    <table id="Table" class="table table-bordered">
+        <thead>
+            <tr class="teble-center text-center">
+                <th>Academic Level</th>
+                <th>
+                    School/College Name
+                </th>
+                <th>
+                    Obtained Marks
+                </th>
+                <th>
+                    Obtained Marks %
+                </th>
+                <th>
+                    Total Marks
+                </th>
+                <th>
+                    Passing Year
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Academic != null && Model.Academic.Count > 0)
+                @foreach (var r in Model.Academic)
+                {
+                    @if (r != null)
+                    {
+                        <tr class="text-center">
+                            <td>@r.Level </td>
+                            <td>@r.UniName</td>
+                            <td>@r.ObtainedMarks </td>
+                            <td>@r.CGPA</td>
+                            <td>@r.TotalMarks</td>
+
+                            <td>@r.PassingYear</td>
+                            <td>
+                                <a class="btn btn-sm btn btn-warning" asp-controller="Student" asp-action="EditAcademicRecord" asp-route-id="@r.Id">Edit</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-danger"
+                                        onclick="deleteAcademicRecord(@r.Id)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    }}
+                else
+                {
+                    <tr>
+                        <td colspan="2">No academic information available for this student.</td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+</div>
+<a class="btn btn-sm btn btn-dark m-4" asp-controller="Student" asp-action="Index">Back To Student List</a>
+
+@section Scripts {
+
+    <script src="~/datatables/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Table").dataTable({
+
+                "processing": true,
+                "ServerSide": true,
+                "filter": true,
+                "orderMulti": true,
+                "ajaz": {
+                    "url": "Student/Getdata",
+                    "type": "POST",
+                    "datatype": "json",
+                },
+                "columns": [
+                    { "data": "Level", "autoWidth": true },
+                    { "data": "UniName", "autoWidth": true },
+                    { "data": "ObtainedMarks", "autoWidth": true },
+                    { "data": "CGPA", "autoWidth": true },
+                    { "data": "TotalMarks", "autoWidth": true },
+                    { "data": "PassingYear", "autoWidth": true },
+                    { "data": "Edit", "autoWidth": true },
+                    { "data": "Delete", "autoWidth": true },
+
+                ]
+            })
+        });
+    </script>
+}
